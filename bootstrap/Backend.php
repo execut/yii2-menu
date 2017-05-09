@@ -28,6 +28,19 @@ class Backend extends Frontend
     public function bootstrap($app)
     {
         parent::bootstrap($app);
+        $this->bootstrapNavigation($app);
+
+    }
+
+    /**
+     * @param $app
+     */
+    protected function bootstrapNavigation($app)
+    {
+        if ($app->user->isGuest) {
+            return;
+        }
+
         /**
          * @var Component $navigation
          */
