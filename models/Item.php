@@ -44,6 +44,10 @@ class Item extends BaseItem
                             'attribute' => 'name',
                         ],
                         [
+                            'required' => true,
+                            'attribute' => 'sort',
+                        ],
+                        [
                             'class' => HasOneSelect2::class,
                             'attribute' => 'menu_item_id',
                             'url' => [
@@ -73,7 +77,7 @@ class Item extends BaseItem
     }
 
     public static function getMenuItems($position) {
-        $items = self::find()->byPositionKey($position)->all();
+        $items = self::find()->orderBySort()->byPositionKey($position)->all();
 
         $result = self::getItemItems($items);
 

@@ -13,5 +13,5 @@ interface Plugin
 
     public function getUrlByItem(Item $item);
 
-    public function getAttachedModels();
+    public function getModels();
 }

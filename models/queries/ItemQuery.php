@@ -42,4 +42,8 @@ class ItemQuery extends \yii\db\ActiveQuery
             'visible' => true,
         ]);
     }
+
+    public function orderBySort() {
+        return $this->addOrderBy('sort ASC');
+    }
 }
