@@ -16,12 +16,11 @@
     }
   ],
   "require": {
-    "yiisoft/yii2": "@dev",
     "execut/yii2-base": "@dev",
     "execut/yii2-crud": "@dev",
     "execut/yii2-crud-fields": "@dev",
     "execut/yii2-dependencies": "@dev",
-    "execut/yii2-migrations": "@dev"
+    "execut/yii2-migration": "@dev"
   },
   "autoload": {
     "psr-4": {
