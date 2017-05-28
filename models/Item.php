@@ -77,7 +77,7 @@ class Item extends BaseItem
     }
 
     public static function getMenuItems($position) {
-        $items = self::find()->orderBySort()->byPositionKey($position)->all();
+        $items = self::find()->isVisible()->orderBySort()->byPositionKey($position)->all();
 
         $result = self::getItemItems($items);
 

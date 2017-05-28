@@ -39,11 +39,16 @@ class ItemQuery extends \yii\db\ActiveQuery
 
         return $this->andWhere([
             'menu_menu_id' => $menu,
-            'visible' => true,
         ]);
     }
 
     public function orderBySort() {
         return $this->addOrderBy('sort ASC');
+    }
+
+    public function isVisible() {
+        $modelClass = $this->modelClass;
+
+        return $this->andWhere($modelClass::tableName() . '.visible');
     }
 }
