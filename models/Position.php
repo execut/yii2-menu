@@ -8,6 +8,7 @@ use execut\crudFields\fields\Action;
 use execut\crudFields\fields\Boolean;
 use execut\crudFields\fields\Date;
 use execut\crudFields\fields\Id;
+use execut\crudFields\ModelsHelperTrait;
 use \execut\menu\models\base\Position as BasePosition;
 use yii\helpers\ArrayHelper;
 
@@ -16,7 +17,7 @@ use yii\helpers\ArrayHelper;
  */
 class Position extends BasePosition
 {
-    use BehaviorStub;
+    use BehaviorStub, ModelsHelperTrait;
     public function behaviors()
     {
         return ArrayHelper::merge(

@@ -9,6 +9,7 @@ use execut\crudFields\fields\Boolean;
 use execut\crudFields\fields\Date;
 use execut\crudFields\fields\HasOneSelect2;
 use execut\crudFields\fields\Id;
+use execut\crudFields\ModelsHelperTrait;
 use Yii;
 use \execut\menu\models\base\Item as BaseItem;
 use yii\helpers\ArrayHelper;
@@ -18,7 +19,7 @@ use yii\helpers\ArrayHelper;
  */
 class Item extends BaseItem
 {
-    use BehaviorStub;
+    use BehaviorStub, ModelsHelperTrait;
     public function behaviors()
     {
         return ArrayHelper::merge(

@@ -29,7 +29,18 @@ class Backend extends Frontend
     {
         parent::bootstrap($app);
         $this->bootstrapNavigation($app);
+        $this->registerTranslations($app);
+    }
 
+    public function registerTranslations($app) {
+        $app->i18n->translations['modules/menu/'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'basePath' => '@vendor/execut/yii2-menu/messages',
+            'fileMap' => [
+                'modules/menu/' => 'menu.php',
+            ],
+        ];
     }
 
     /**
