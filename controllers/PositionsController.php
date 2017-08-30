@@ -27,9 +27,13 @@ class PositionsController extends Controller
 
     public function actions()
     {
+
         return \yii::createObject([
             'class' => Crud::class,
             'modelClass' => Position::class,
+            'module' => 'menu',
+            'moduleName' => 'Menus',
+            'modelName' => Position::MODEL_NAME,
         ])->actions();
     }
 }

@@ -32,6 +32,9 @@ class MenusController extends Controller
         return \yii::createObject([
             'class' => Crud::class,
             'modelClass' => Menu::class,
+            'module' => 'menu',
+            'moduleName' => 'Menus',
+            'modelName' => Menu::MODEL_NAME,
         ])->actions();
     }
 }

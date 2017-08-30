@@ -101,15 +101,6 @@ abstract class Item extends \yii\db\ActiveRecord
         return $this->hasOne(\execut\menu\models\Menu::className(), ['id' => 'menu_menu_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPagesPage()
-    {
-        return $this->hasOne(\execut\menu\models\PagesPage::className(), ['id' => 'pages_page_id']);
-    }
-
-
     
     /**
      * @inheritdoc

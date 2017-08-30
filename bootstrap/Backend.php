@@ -7,6 +7,9 @@ namespace execut\menu\bootstrap;
 
 use execut\actions\Bootstrap;
 use execut\crud\navigation\Configurator;
+use execut\menu\models\Item;
+use execut\menu\models\Menu;
+use execut\menu\models\Position;
 use execut\navigation\Component;
 use yii\helpers\ArrayHelper;
 
@@ -33,12 +36,12 @@ class Backend extends Frontend
     }
 
     public function registerTranslations($app) {
-        $app->i18n->translations['modules/menu/'] = [
+        $app->i18n->translations['execut/menu'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
             'basePath' => '@vendor/execut/yii2-menu/messages',
             'fileMap' => [
-                'modules/menu/' => 'menu.php',
+                'execut/menu' => 'menu.php',
             ],
         ];
     }
@@ -57,16 +60,16 @@ class Backend extends Frontend
          */
         $navigation = $app->navigation;
         $models = [
-            'menu',
-            'item',
-            'position',
+            'menu' => Menu::MODEL_NAME,
+            'item' => Item::MODEL_NAME,
+            'position' => Position::MODEL_NAME,
         ];
-        foreach ($models as $model) {
+        foreach ($models as $model => $modelName) {
             $navigation->addConfigurator([
                 'class' => Configurator::class,
                 'module' => 'menu',
-                'moduleName' => 'Menu',
-                'modelName' => ucfirst($model),
+                'moduleName' => 'Menus',
+                'modelName' => $modelName,
                 'controller' => $model . 's',
             ]);
         }

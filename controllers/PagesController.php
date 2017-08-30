@@ -15,6 +15,7 @@ use yii\web\Controller;
 
 class PagesController extends Controller
 {
+    public $enableCsrfValidation = false;
     public function behaviors()
     {
         return [

@@ -10,6 +10,8 @@ use execut\crudFields\fields\Date;
 use execut\crudFields\fields\Id;
 use execut\crudFields\ModelsHelperTrait;
 use \execut\menu\models\base\Position as BasePosition;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -17,6 +19,7 @@ use yii\helpers\ArrayHelper;
  */
 class Position extends BasePosition
 {
+    const MODEL_NAME = '{n,plural,=0{Positions} =1{Position} other{Positions}}';
     use BehaviorStub, ModelsHelperTrait;
     public function behaviors()
     {
@@ -54,6 +57,12 @@ class Position extends BasePosition
                             'class' => Action::class,
                         ],
                     ],
+                ],
+                [
+                    'class' => TimestampBehavior::className(),
+                    'createdAtAttribute' => 'created',
+                    'updatedAtAttribute' => 'updated',
+                    'value' => new Expression('NOW()'),
                 ],
                 # custom behaviors
             ]
