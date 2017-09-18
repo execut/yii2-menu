@@ -105,6 +105,12 @@ class Item extends BaseItem
             }
         }
 
+        if ($parentId !== null) {
+            uasort($result, function ($a, $b) {
+                return $a['label'] > $b['label'];
+            });
+        }
+
         return $result;
     }
 
