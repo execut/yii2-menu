@@ -73,7 +73,9 @@ class Item extends BaseItem
     }
 
     public static function getMenuItems($position) {
-        $items = self::find()->isVisible()->orderBySort()->byPositionKey($position)->all();
+        $q = self::find()->isVisible()->orderBySort()->byPositionKey($position);
+        \yii::$app->getModule('menu')->applyItemsScopes($q);
+        $items = $q->all();
 
         $result = self::getItemItems($items);
 

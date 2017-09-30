@@ -6,6 +6,7 @@ namespace execut\menu;
 
 
 use execut\menu\models\Item;
+use yii\db\ActiveQuery;
 
 interface Plugin
 {
@@ -14,4 +15,5 @@ interface Plugin
     public function getUrlByItem(Item $item);
 
     public function getModels();
+    public function applyItemsScopes(ActiveQuery $q);
 }

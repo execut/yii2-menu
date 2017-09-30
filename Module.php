@@ -6,6 +6,7 @@ namespace execut\menu;
 
 use execut\dependencies\PluginBehavior;
 use execut\menu\models\Item;
+use yii\db\ActiveQuery;
 use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module implements Plugin
@@ -43,5 +44,9 @@ class Module extends \yii\base\Module implements Plugin
                 return $result;
             }
         }
+    }
+
+    public function applyItemsScopes(ActiveQuery $q) {
+        return $this->getPluginsResults(__FUNCTION__, false, [$q]);
     }
 }
