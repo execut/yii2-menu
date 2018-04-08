@@ -24,15 +24,15 @@ class Menu extends BaseMenu
     const MODEL_NAME = '{n,plural,=0{Menus} =1{Menu} other{Menus}}';
     use BehaviorStub, ModelsHelperTrait;
 
-    protected static $defaultId = null;
+    protected static $defaultId = false;
     public static function getDefaultId() {
-        if (self::$defaultId !== null) {
+        if (self::$defaultId !== false) {
             return self::$defaultId;
         }
 
         self::$defaultId = self::find()->andWhere('is_default')->select('id')->createCommand()->queryScalar();
-        if (self::$defaultId === null) {
-            self::$defaultId = false;
+        if (self::$defaultId === false) {
+            self::$defaultId = null;
         }
 
         return self::$defaultId;
