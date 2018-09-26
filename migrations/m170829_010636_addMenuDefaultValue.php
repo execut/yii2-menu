@@ -8,7 +8,8 @@ class m170829_010636_addMenuDefaultValue extends Migration
     public function initInverter(Inverter $i)
     {
         $i->table('menu_menus')
-            ->addColumn('is_default', $this->boolean()->defaultValue(false));
+            ->addColumn('is_default', $this->boolean())
+            ->alterColumnSetDefault('is_default', 'false');
     }
 
     /*

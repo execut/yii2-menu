@@ -7,6 +7,7 @@ class m170514_165149_addSortToItems extends Migration
 {
     public function initInverter(Inverter $i)
     {
-        $i->table('menu_items')->addColumn('sort', $this->integer()->notNull()->defaultValue(0));
+        $i->table('menu_items')->addColumn('sort', $this->integer()->notNull())
+            ->alterColumnSetDefault('sort', 0);
     }
 }

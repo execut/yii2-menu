@@ -51,7 +51,7 @@ class Backend extends Frontend
      */
     protected function bootstrapNavigation($app)
     {
-        if ($app->user->isGuest) {
+        if (!$app->user->can($app->getModule('menu')->adminRole)) {
             return;
         }
 
