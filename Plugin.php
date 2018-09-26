@@ -14,6 +14,5 @@ interface Plugin
 
     public function getUrlByItem(Item $item);
 
-    public function getModels();
     public function applyItemsScopes(ActiveQuery $q);
 }

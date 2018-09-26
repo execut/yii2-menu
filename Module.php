@@ -11,6 +11,7 @@ use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module implements Plugin
 {
+    public $adminRole = '@';
     public $models = [];
     public function behaviors()
     {

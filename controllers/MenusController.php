@@ -20,7 +20,7 @@ class MenusController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => [$this->module->adminRole],
                     ],
                 ],
             ],
