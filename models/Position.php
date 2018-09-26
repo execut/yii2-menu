@@ -9,15 +9,15 @@ use execut\crudFields\fields\Boolean;
 use execut\crudFields\fields\Date;
 use execut\crudFields\fields\Id;
 use execut\crudFields\ModelsHelperTrait;
-use \execut\menu\models\base\Position as BasePosition;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "menu_positions".
  */
-class Position extends BasePosition
+class Position extends ActiveRecord
 {
     const MODEL_NAME = '{n,plural,=0{Positions} =1{Position} other{Positions}}';
     use BehaviorStub, ModelsHelperTrait;
@@ -67,5 +67,32 @@ class Position extends BasePosition
                 # custom behaviors
             ]
         );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'menu_positions';
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMenus()
+    {
+        return $this->hasMany(\execut\menu\models\Menu::className(), ['menu_position_id' => 'id']);
+    }
+
+
+
+    /**
+     * @inheritdoc
+     * @return \execut\menu\models\queries\PositionQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \execut\menu\models\queries\PositionQuery(get_called_class());
     }
 }
