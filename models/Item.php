@@ -102,6 +102,7 @@ class Item extends ActiveRecord
                     'label' => $item->name,
                     'url' => $item->getUrl(),
                     'items' => self::getItemItems($items, $item->id),
+                    'sort' => $item->sort,
                 ];
             }
         }
