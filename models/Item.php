@@ -108,7 +108,7 @@ class Item extends ActiveRecord
 
         if ($parentId !== null) {
             uasort($result, function ($a, $b) {
-                return $a['label'] > $b['label'];
+                return $a['sort'] > $b['sort'];
             });
         }
 
