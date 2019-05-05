@@ -32,18 +32,6 @@ class Backend extends Frontend
     {
         parent::bootstrap($app);
         $this->bootstrapNavigation($app);
-        $this->registerTranslations($app);
-    }
-
-    public function registerTranslations($app) {
-        $app->i18n->translations['execut/menu'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'en-US',
-            'basePath' => '@vendor/execut/yii2-menu/messages',
-            'fileMap' => [
-                'execut/menu' => 'menu.php',
-            ],
-        ];
     }
 
     /**
@@ -51,7 +39,8 @@ class Backend extends Frontend
      */
     protected function bootstrapNavigation($app)
     {
-        if (!$app->user->can($app->getModule('menu')->adminRole)) {
+        $module = $app->getModule('menu');
+        if (!(!$app->user->isGuest && $module->adminRole === '@') && !$app->user->can($module->adminRole)) {
             return;
         }
 
