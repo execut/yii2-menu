@@ -23,12 +23,11 @@ class Menu extends ActiveRecord
     public static function getDefaultId() {
         $cache = \yii::$app->cache;
         $cacheDefaultKey = self::getCacheDefaultKey();
-        if (($result = $cache->get($cacheDefaultKey)) !== null) {
-            return $result;
+        if (($result = $cache->get($cacheDefaultKey)) === null) {
+            $result = self::find()->andWhere('is_default')->select('id')->createCommand()->queryScalar();
+            $cache->set($cacheDefaultKey, $result);
         }
 
-        $result = self::find()->andWhere('is_default')->select('id')->createCommand()->queryScalar();
-        $cache->set($cacheDefaultKey, $result);
         if ($result === false) {
             $result = null;
         }
