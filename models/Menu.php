@@ -73,7 +73,7 @@ class Menu extends ActiveRecord
                     ]),
                 ],
                 [
-                    'class' => TimestampBehavior::className(),
+                    'class' => TimestampBehavior::class,
                     'createdAtAttribute' => 'created',
                     'updatedAtAttribute' => 'updated',
                     'value' => new Expression('NOW()'),
@@ -96,7 +96,7 @@ class Menu extends ActiveRecord
      */
     public function getItems()
     {
-        return $this->hasMany(\execut\menu\models\Item::className(), ['menu_menu_id' => 'id']);
+        return $this->hasMany(\execut\menu\models\Item::class, ['menu_menu_id' => 'id']);
     }
 
     /**
@@ -104,7 +104,7 @@ class Menu extends ActiveRecord
      */
     public function getMenuPosition()
     {
-        return $this->hasOne(\execut\menu\models\Position::className(), ['id' => 'menu_position_id']);
+        return $this->hasOne(\execut\menu\models\Position::class, ['id' => 'menu_position_id']);
     }
 
 

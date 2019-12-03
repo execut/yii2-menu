@@ -59,7 +59,7 @@ class Position extends ActiveRecord
                     ],
                 ],
                 [
-                    'class' => TimestampBehavior::className(),
+                    'class' => TimestampBehavior::class,
                     'createdAtAttribute' => 'created',
                     'updatedAtAttribute' => 'updated',
                     'value' => new Expression('NOW()'),
@@ -82,7 +82,7 @@ class Position extends ActiveRecord
      */
     public function getMenus()
     {
-        return $this->hasMany(\execut\menu\models\Menu::className(), ['menu_position_id' => 'id']);
+        return $this->hasMany(\execut\menu\models\Menu::class, ['menu_position_id' => 'id']);
     }
 
 
