@@ -48,10 +48,12 @@ class Position extends ActiveRecord
                         [
                             'class' => Date::class,
                             'attribute' => 'created',
+                            'isTime' => true,
                         ],
                         [
                             'class' => Date::class,
                             'attribute' => 'updated',
+                            'isTime' => true,
                         ],
                         [
                             'class' => Action::class,
