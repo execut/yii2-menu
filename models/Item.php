@@ -32,12 +32,18 @@ class Item extends ActiveRecord
 
     public function behaviors()
     {
+        if (YII_ENV === 'test_unit') {
+            $itemFieldsPlugins = [];
+        } else {
+            $itemFieldsPlugins = \yii::$app->getModule('menu')->getItemFieldsPlugins();
+        }
+
         return ArrayHelper::merge(
             parent::behaviors(),
             [
                 'fields' => [
                     'class' => Behavior::class,
-                    'plugins' => \yii::$app->getModule('menu')->getItemFieldsPlugins(),
+                    'plugins' => $itemFieldsPlugins,
                     'fields' => $this->getStandardFields(null, [
                         [
                             'class' => HasOneSelect2::class,
@@ -60,6 +66,12 @@ class Item extends ActiveRecord
                                 '/menu/items'
                             ],
                         ],
+                        'link_url' => [
+                            'attribute' => 'link_url',
+                            'rules' => [
+                                'checkUrl' => ['link_url', 'checkUrl']
+                            ],
+                        ]
                     ]),
                 ],
                 [
@@ -73,6 +85,23 @@ class Item extends ActiveRecord
         );
     }
 
+    public function checkUrl() {
+        $url = $this->link_url;
+        if (strpos($url, '://') !== false) {
+            if (preg_match('/^http[s]?:\/\/[a-z]+\.[-a-z\/]+$/', $url) === 0) {
+                $this->addError('link_url', 'Wrong url address');
+                return false;
+            }
+        } else {
+            if (preg_match('/^[-a-zA-Z\/]+$/', $url) === 0) {
+                $this->addError('link_url', 'Allowed only next chars: /-a-Z');
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static function getMenuItems($position) {
         $q = self::find()->isVisible()->orderBySort()->byPositionKey($position);
         \yii::$app->getModule('menu')->applyItemsScopes($q);
@@ -84,7 +113,12 @@ class Item extends ActiveRecord
     }
 
     public function getUrl() {
-        $plugins = \yii::$app->getModule('menu')->getPlugins();
+        if (YII_ENV === 'test_unit') {
+            $plugins = [];
+        } else {
+            $plugins = \yii::$app->getModule('menu')->getPlugins();
+        }
+
         foreach ($plugins as $plugin) {
             $url = $plugin->getUrlByItem($this);
             if ($url) {
@@ -92,7 +126,7 @@ class Item extends ActiveRecord
             }
         }
 
-        return false;
+        return $this->link_url;
     }
 
     public static function getItemItems(&$items, $parentId = null) {

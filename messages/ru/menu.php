@@ -18,4 +18,5 @@ return [
     'Pages Page' => 'Страница',
     'Created' => 'Создано',
     'Updated' => 'Обновлено',
+    'Link Url' => 'Ссылка',
 ];
