@@ -19,4 +19,6 @@ return [
     'Created' => 'Создано',
     'Updated' => 'Обновлено',
     'Link Url' => 'Ссылка',
+    'Allowed only next chars: /-a-Z0-9' => 'Разрешены только следующие символы: /-a-Z0-9',
+    'Wrong url address' => 'Неверный url-адрес',
 ];

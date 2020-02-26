@@ -88,13 +88,13 @@ class Item extends ActiveRecord
     public function checkUrl() {
         $url = $this->link_url;
         if (strpos($url, '://') !== false) {
-            if (preg_match('/^http[s]?:\/\/[a-z]+\.[-a-z\/]+$/', $url) === 0) {
-                $this->addError('link_url', 'Wrong url address');
+            if (preg_match('/^http[s]?:\/\/[a-z0-9]+\.[-a-z0-9\/]+$/', $url) === 0) {
+                $this->addError('link_url', \yii::t('execut/menu', 'Wrong url address'));
                 return false;
             }
         } else {
-            if (preg_match('/^[-a-zA-Z\/]+$/', $url) === 0) {
-                $this->addError('link_url', 'Allowed only next chars: /-a-Z');
+            if (preg_match('/^[-a-zA-Z0-9\/]+$/', $url) === 0) {
+                $this->addError('link_url', \yii::t('execut/menu', 'Allowed only next chars: /-a-Z0-9'));
                 return false;
             }
         }
