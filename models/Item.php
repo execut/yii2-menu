@@ -49,6 +49,7 @@ class Item extends ActiveRecord
                             'class' => HasOneSelect2::class,
                             'attribute' => 'menu_menu_id',
                             'relation' => 'menuMenu',
+                            'required' => true,
                             'url' => [
                                 '/menu/menus'
                             ],
