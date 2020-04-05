@@ -22,7 +22,7 @@ class m170402_192559_initalStructure extends Migration
         $items = $i->table('menu_items')->create($this->defaultColumns([
             'name' => $this->string()->notNull(),
             'url' => $this->string(),
-            'target_blank' => $this->boolean()->defaultValue('false'),
+            'target_blank' => $this->boolean()->defaultValue(false),
             'visible' => $this->boolean()->notNull()->defaultValue(true)
         ]))
             ->addForeignColumn('menu_items')
