@@ -16,7 +16,7 @@ class Module extends \yii\base\Module implements Plugin
     public function behaviors()
     {
         return [
-            [
+            'plugin' => [
                 'class' => PluginBehavior::class,
                 'pluginInterface' => Plugin::class,
             ],
@@ -49,5 +49,19 @@ class Module extends \yii\base\Module implements Plugin
 
     public function applyItemsScopes(ActiveQuery $q) {
         return $this->getPluginsResults(__FUNCTION__, false, [$q]);
+    }
+
+    public function addPlugin(Plugin $plugin)
+    {
+        return $this->getBehavior('plugin')->addPlugins([$plugin]);
+    }
+
+    public function getItemImageUrl(Item $item)
+    {
+        foreach ($this->getPlugins() as $plugin) {
+            if ($result = $plugin->getItemImageUrl($item)) {
+                return $result;
+            }
+        }
     }
 }

@@ -44,4 +44,8 @@ class Pages implements Plugin
             Page::class,
         ];
     }
+
+    public function getItemImageUrl(Item $item)
+    {
+    }
 }

@@ -30,9 +30,10 @@ class Item extends ActiveRecord
 //        }
 //    }
 
+
     public function behaviors()
     {
-        if (YII_ENV === 'test_unit') {
+        if (YII_ENV === 'unit_test') {
             $itemFieldsPlugins = [];
         } else {
             $itemFieldsPlugins = \yii::$app->getModule('menu')->getItemFieldsPlugins();
@@ -114,7 +115,7 @@ class Item extends ActiveRecord
     }
 
     public function getUrl() {
-        if (YII_ENV === 'test_unit') {
+        if (YII_ENV === 'unit_test') {
             $plugins = [];
         } else {
             $plugins = \yii::$app->getModule('menu')->getPlugins();
@@ -130,6 +131,22 @@ class Item extends ActiveRecord
         return $this->link_url;
     }
 
+    public function getImageUrl()
+    {
+        if (YII_ENV === 'test_unit') {
+            $plugins = [];
+        } else {
+            $plugins = \yii::$app->getModule('menu')->getPlugins();
+        }
+
+        foreach ($plugins as $plugin) {
+            $url = $plugin->getItemImageUrl($this);
+            if ($url) {
+                return $url;
+            }
+        }
+    }
+
     public static function getItemItems(&$items, $parentId = null) {
         $result = [];
         foreach ($items as $key => $item) {
@@ -140,6 +157,7 @@ class Item extends ActiveRecord
                     'url' => $item->getUrl(),
                     'items' => self::getItemItems($items, $item->id),
                     'sort' => $item->sort,
+                    'imageUrl' => $item->getImageUrl(),
                 ];
             }
         }
