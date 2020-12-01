@@ -33,7 +33,7 @@ class Item extends ActiveRecord
 
     public function behaviors()
     {
-        if (YII_ENV === 'unit_test') {
+        if (YII_ENV === 'test_unit') {
             $itemFieldsPlugins = [];
         } else {
             $itemFieldsPlugins = \yii::$app->getModule('menu')->getItemFieldsPlugins();
@@ -115,7 +115,7 @@ class Item extends ActiveRecord
     }
 
     public function getUrl() {
-        if (YII_ENV === 'unit_test') {
+        if (YII_ENV === 'test_unit') {
             $plugins = [];
         } else {
             $plugins = \yii::$app->getModule('menu')->getPlugins();

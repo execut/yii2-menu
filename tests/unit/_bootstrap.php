@@ -8,7 +8,7 @@ defined('TEST_ENTRY_FILE') or define('TEST_ENTRY_FILE', dirname(__DIR__) . '/web
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 
-defined('YII_ENV') or define('YII_ENV', 'unit_test');
+defined('YII_ENV') or define('YII_ENV', 'test_unit');
 
 require_once(__DIR__ . '/../../../../autoload.php');
 

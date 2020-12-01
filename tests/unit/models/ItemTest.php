@@ -50,6 +50,7 @@ class ItemTest extends \Codeception\Test\Unit
                 'url' => 'test',
                 'sort' => 123,
                 'items' => [],
+                'imageUrl' => null,
             ]
         ], $itemItems);
     }
